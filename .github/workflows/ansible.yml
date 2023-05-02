@@ -13,6 +13,7 @@ jobs:
     - name: Deploy Ansible
       run: |
         mkdir -p ~/.ssh
+        touch ~/.ssh/bc-lrs
         echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/bc-lrs
         chmod 600 ~/.ssh/bc-lrs
         ls -l ~/.ssh/bc-lrs
