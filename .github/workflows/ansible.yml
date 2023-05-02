@@ -14,7 +14,7 @@ jobs:
       run: |
         mkdir  ~/.ssh
         echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/bc-lrs
-        chmod 600 ~/.ssh/bc-lrs
+        chmod 777 ~/.ssh/bc-lrs
         ls -l ~/.ssh/bc-lrs
         cat ~/.ssh/bc-lrs
         ssh -i ~/.ssh/bc-lrs root@45.79.130.245 'apt-get update && apt-get install -y software-properties-common && apt-add-repository ppa:ansible/ansible && apt-get update && apt-get install -y ansible'
