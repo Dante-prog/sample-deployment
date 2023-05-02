@@ -1,0 +1,21 @@
+name: Deploy Ansible to Linode
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Deploy Ansible
+      run: |
+        mkdir -p ~/.ssh
+        touch ~/.ssh/bc-lrs
+        echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/bc-lrs
+        chmod 600 ~/.ssh/bc-lrs
+        ls -l ~/.ssh/bc-lrs
+        cat ~/.ssh/bc-lrs
+        ssh -i ~/.ssh/bc-lrs root@172.104.12.212 'apt-get update && apt-get install -y software-properties-common && apt-add-repository ppa:ansible/ansible && apt-get update && apt-get install -y ansible'
