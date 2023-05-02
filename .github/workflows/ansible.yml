@@ -10,9 +10,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - name: Deploy Ansible
+    - name: Deploy LAMP
       run: |
         mkdir  ~/.ssh
         echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/bc-lrs
         chmod 600 ~/.ssh/bc-lrs
-        ssh -o StrictHostKeyChecking=no -i ~/.ssh/bc-lrs root@45.79.130.245 'apt-get update && apt-get install -y software-properties-common && apt-add-repository ppa:ansible/ansible && apt-get update && apt-get install -y ansible'
+        ssh -o StrictHostKeyChecking=no -i ~/.ssh/bc-lrs root@45.79.130.177 'apt-get update && apt-get install -y apache2 mysql-server php libapache2-mod-php'
